@@ -3,7 +3,7 @@
 This Action wraps the [Serverless Framework](https://serverless.com) to enable common Serverless commands.
 
 ## Usage
-An example workflow to build a docker container from source and deploy a project with serverless:
+An example workflow to deploy a project with serverless:
 
 
 ```
