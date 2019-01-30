@@ -11,6 +11,9 @@ LABEL "com.github.actions.description"="Wraps the Serverless Frameork to enable 
 LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="red"
 
+RUN apt-get update && \
+    apt-get install -qq -y python2.7 python3 ruby
+
 RUN npm i -g serverless
 
 ENTRYPOINT ["serverless"]
