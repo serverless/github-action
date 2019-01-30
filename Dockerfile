@@ -12,7 +12,7 @@ LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="red"
 
 RUN apt-get update
-RUN apt-get install software-properties-common
+RUN apt-get install -qq -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update && \
     apt-get install -qq -y python2.7 python3.6 ruby python-pip python3-pip python-setuptools python3-setuptools
