@@ -11,6 +11,7 @@ LABEL "com.github.actions.description"="Wraps the Serverless Frameork to enable 
 LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="red"
 
+RUN apt-get update
 RUN apt-get install software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update && \
