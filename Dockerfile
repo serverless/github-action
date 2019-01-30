@@ -1,4 +1,4 @@
-FROM node:10-slim
+FROM node:11-slim
 
 
 LABEL version="1.0.0"
