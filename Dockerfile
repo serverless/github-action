@@ -12,7 +12,7 @@ LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="red"
 
 RUN apt-get update && \
-    apt-get install -qq -y python2.7 python3 ruby python-pip python3-pip python-setuptools python3-setuptools
+    apt-get install -qq -y python2.7 python3.6 ruby python-pip python3-pip python-setuptools python3-setuptools
 
 RUN npm i -g serverless
 
