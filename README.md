@@ -9,7 +9,7 @@ An example workflow to deploy a project with serverless:
 ```
 workflow "Deploy with Serverless" {
   on = "push"
-  resolves = "release"
+  resolves = "serverless deploy"
 }
 
 action "serverless deploy" {
