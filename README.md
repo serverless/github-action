@@ -1,4 +1,4 @@
-# GitHub Deployer for Serverless
+# Github Action for Serverless
 
 This Action wraps the [Serverless Framework](https://serverless.com) to enable common Serverless commands.
 
