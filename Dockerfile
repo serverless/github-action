@@ -11,5 +11,5 @@ LABEL "com.github.actions.description"="Wraps the Serverless Frameork to enable 
 LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="red"
 
-RUN npm i -g serverless@latest
+RUN npm i -g serverless@1.48.2
 ENTRYPOINT ["serverless"]
