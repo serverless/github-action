@@ -5,7 +5,36 @@ This Action wraps the [Serverless Framework](https://serverless.com) to enable c
 ## Usage
 An example workflow to deploy a project with serverless:
 
+### YAML syntax
+```
+name: Deploy with Serverless
 
+on: push
+
+jobs:
+  build:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v1
+
+    - name: npm install
+      uses: actions/npm@1.0.0
+      with:
+        args: install
+
+    - name: serverless deploy
+      uses: serverless/github-action@master
+      with:
+        args: deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+```
+
+### HCL syntax
 ```
 workflow "Deploy with Serverless" {
   on = "push"
