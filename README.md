@@ -1,4 +1,4 @@
-# Github Action for Serverless
+# Github Action for Serverless test
 
 This Action wraps the [Serverless Framework](https://serverless.com) to enable common Serverless commands.
 
