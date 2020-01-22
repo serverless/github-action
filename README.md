@@ -11,17 +11,14 @@ on:
   push:
     branches:
       - master
-name: Deploy master branch
+name: Serverless deploy master branch
 jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: npm install
-      uses: actions/npm@master
-      with:
-        args: install
+    - run: npm ci
     - name: serverless deploy
       uses: serverless/github-action@master
       with:
@@ -31,6 +28,7 @@ jobs:
         # or if using AWS creds directly
         # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 ```
 
 ## License
