@@ -6,7 +6,7 @@ This Action wraps the [Serverless Framework](https://serverless.com) to enable c
 An example workflow to deploy a project with serverless:
 
 
-```
+```yaml
 on:
   push:
     branches:
