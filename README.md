@@ -2,7 +2,14 @@
 
 This Action wraps the [Serverless Framework](https://serverless.com) to enable common Serverless commands.
 
+## This project is looking for maintainers!
+
+If you would like to be a maintainer of this project, please reach out to one of the active [Serverless organization](https://github.com/serverless) members to express your interest.
+
+Welcome, and thanks in advance for your help!
+
 ## Usage
+
 An example workflow to deploy a project with serverless:
 
 
