@@ -13,7 +13,7 @@ Welcome, and thanks in advance for your help!
 An example workflow to deploy a project with serverless:
 
 
-```
+```yaml
 on:
   push:
     branches:
