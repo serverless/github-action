@@ -26,9 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: npm install
-      uses: actions/npm@master
-      with:
-        args: install
+      run: npm install
     - name: serverless deploy
       uses: serverless/github-action@master
       with:
