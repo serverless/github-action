@@ -46,6 +46,10 @@ jobs:
         # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
+## Usage with plugins
+See example in [this issue](https://github.com/serverless/github-action/issues/28)
+
+
 ## License
 
 The Dockerfile and associated scripts and documentation in this project are released under the Apache-2 license.
