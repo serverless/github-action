@@ -36,7 +36,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - name: serverless deploy
-      uses: serverless/github-action@master
+      uses: serverless/github-action@v1
       with:
         args: deploy
       env:
