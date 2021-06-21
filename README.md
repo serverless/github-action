@@ -46,6 +46,10 @@ jobs:
         # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
+## Serverless v1.x
+Change `serverless/github-action@master` to `serverless/github-action@v1`
+
+
 ## Usage with plugins
 See example in [this issue](https://github.com/serverless/github-action/issues/28)
 
