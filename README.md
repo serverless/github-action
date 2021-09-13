@@ -12,14 +12,13 @@ Welcome, and thanks in advance for your help!
 
 An example workflow to deploy a project with serverless:
 
-
 ```yaml
-name: Deploy master branch
+name: Deploy main branch
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -29,30 +28,30 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - name: serverless deploy
-      uses: serverless/github-action@master
-      with:
-        args: deploy
-      env:
-        SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
-        # or if using AWS credentials directly
-        # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - name: serverless deploy
+        uses: serverless/github-action@main
+        with:
+          args: deploy
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          # or if using AWS credentials directly
+          # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
 ## Serverless v1.x
-Change `serverless/github-action@master` to `serverless/github-action@v1`
 
+Change `serverless/github-action@main` to `serverless/github-action@v1`
 
 ## Usage with plugins
-See example in [this issue](https://github.com/serverless/github-action/issues/28)
 
+See example in [this issue](https://github.com/serverless/github-action/issues/28)
 
 ## License
 
