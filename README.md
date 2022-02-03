@@ -10,7 +10,7 @@ Welcome, and thanks in advance for your help!
 
 ## Usage
 
-An example workflow to deploy a project with serverless:
+An example workflow to deploy a project with serverless v3:
 
 
 ```yaml
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [14.x, 16.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -49,6 +49,8 @@ jobs:
 ## Serverless v1.x
 Change `serverless/github-action@master` to `serverless/github-action@v1`
 
+## Serverless v2.x
+Change `serverless/github-action@master` to `serverless/github-action@v2`
 
 ## Usage with plugins
 See example in [this issue](https://github.com/serverless/github-action/issues/28)
