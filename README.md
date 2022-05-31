@@ -46,14 +46,35 @@ jobs:
         # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
-## Serverless v1.x
-Change `serverless/github-action@master` to `serverless/github-action@v1`
+## Usage with serverless plugins
+Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/28), thanks to @matthewpoer:
+```yaml
+    - name: Install Plugin and Deploy
+      uses: serverless/github-action@v3
+      with:
+        args: -c "serverless plugin install --name <plugin-name> && serverless deploy"
+        entrypoint: /bin/sh
+```
 
-## Serverless v2.x
-Change `serverless/github-action@master` to `serverless/github-action@v2`
+## Fix "This command can only be run in a Serverless service directory" error
+Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/53#issuecomment-1059839383), thanks to @nikhuber:
+```yaml
+    - name: Enter dir and deploy
+      uses: serverless/github-action@v3
+      with:
+        args: -c "cd ./<your-dir> && serverless deploy"
+        entrypoint: /bin/sh
+```
 
-## Usage with plugins
-See example in [this issue](https://github.com/serverless/github-action/issues/28)
+
+## Use serverless v1 or v2
+Change the action with one of the following:
+```yaml
+uses: serverless/github-action@v1
+```
+```yaml
+uses: serverless/github-action@v2
+```
 
 
 ## License
