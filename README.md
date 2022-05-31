@@ -10,7 +10,7 @@ Welcome, and thanks in advance for your help!
 
 ## Usage
 
-An example workflow to deploy a project with serverless:
+An example workflow to deploy a project with serverless v3:
 
 
 ```yaml
@@ -46,8 +46,35 @@ jobs:
         # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
-## Usage with plugins
-See example in [this issue](https://github.com/serverless/github-action/issues/28)
+## Usage with serverless plugins
+Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/28), thanks to @matthewpoer:
+```yaml
+    - name: Install Plugin and Deploy
+      uses: serverless/github-action@v3
+      with:
+        args: -c "serverless plugin install --name <plugin-name> && serverless deploy"
+        entrypoint: /bin/sh
+```
+
+## Fix "This command can only be run in a Serverless service directory" error
+Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/53#issuecomment-1059839383), thanks to @nikhuber:
+```yaml
+    - name: Enter dir and deploy
+      uses: serverless/github-action@v3
+      with:
+        args: -c "cd ./<your-dir> && serverless deploy"
+        entrypoint: /bin/sh
+```
+
+
+## Use serverless v1 or v2
+Change the action with one of the following:
+```yaml
+uses: serverless/github-action@v1
+```
+```yaml
+uses: serverless/github-action@v2
+```
 
 
 ## License
