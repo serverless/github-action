@@ -27,16 +27,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [16.x]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - name: serverless deploy
-      uses: serverless/github-action@v3
+      uses: serverless/github-action@v3.1
       with:
         args: deploy
       env:
@@ -50,7 +50,7 @@ jobs:
 Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/28), thanks to @matthewpoer:
 ```yaml
     - name: Install Plugin and Deploy
-      uses: serverless/github-action@v3
+      uses: serverless/github-action@v3.1
       with:
         args: -c "serverless plugin install --name <plugin-name> && serverless deploy"
         entrypoint: /bin/sh
@@ -60,7 +60,7 @@ Change your action in this way, according to [this issue](https://github.com/ser
 Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/53#issuecomment-1059839383), thanks to @nikhuber:
 ```yaml
     - name: Enter dir and deploy
-      uses: serverless/github-action@v3
+      uses: serverless/github-action@v3.1
       with:
         args: -c "cd ./<your-dir> && serverless deploy"
         entrypoint: /bin/sh
