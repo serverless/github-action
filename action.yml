@@ -1,0 +1,17 @@
+name: 'Serverless Github Action'
+description: 'Github Action for the Serverless Framework'
+inputs:
+  args:
+    description: 'Arguments passed to `serverless`'
+    required: false
+    default: help
+  serverless-version:
+    description: 'Version of the Serverless Framework to use (default: latest)'
+    required: false
+    default: latest
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.serverless-version }}
+    - ${{ inputs.args }}

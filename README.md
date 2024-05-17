@@ -46,6 +46,14 @@ jobs:
         # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
+## Specify a particular version
+```yaml
+    - name: Deploy with a particular version
+      uses: serverless/github-action@v3.2
+      with:
+        serverless-version: 3
+```
+
 ## Usage with serverless plugins
 Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/28), thanks to @matthewpoer:
 ```yaml
