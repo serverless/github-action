@@ -52,8 +52,7 @@ jobs:
 | --- | --- | --- | --- |
 | `args` | Arguments passed to `serverless` | `true` |
 | `aws-credentials` | Whether to use credentials stored in the local environment (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`) | `false` |  |
-| `entrypoint` | Serverless entrypoint. For example: `/bin/sh` | `false` | `/entrypoint.sh` |
-| `install-packages` | Comma-separated list of packages to install prior to running `serverless {args}` | `false` |  |
+| `install-packages` | Space-separated list of packages to install prior to running `serverless {args}` | `false` |  |
 | `serverless-version` | Version of the Serverless Framework to use | `false` | `latest` |
 | `working-directory` | Folder where your configuration is located | `false` | `.` |
 
@@ -62,7 +61,7 @@ jobs:
 ### Minimal example
 ```yaml
     - name: Deploy
-      uses: serverless/github-action@v3.2
+      uses: serverless/github-action@v4.0
       with:
         args: deploy
 ```
@@ -70,7 +69,7 @@ jobs:
 ### Use local credentials
 ```yaml
     - name: Deploy with local credentials
-      uses: serverless/github-action@v3.2
+      uses: serverless/github-action@v4.0
       with:
         aws-credentials: true # or yes
         args: deploy
@@ -79,28 +78,19 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
-### Use a different entrypoint
-```yaml
-    - name: Deploy with a different entrypoint
-      uses: serverless/github-action@v3.2
-      with:
-        entrypoint: /bin/sh
-        args: -c "serverless deploy"
-```
-
 ### Install packages and deploy
 ```yaml
     - name: Install packages and deploy
-      uses: serverless/github-action@v3.2
+      uses: serverless/github-action@v4.0
       with:
-        install-packages: serverless-offline,serverless-prune-plugin
+        install-packages: serverless-offline serverless-prune-plugin
         args: deploy
 ```
 
 ### Use a particular Serverless Framework CLI version
 ```yaml
     - name: Deploy using a particular version of serverless
-      uses: serverless/github-action@v3.2
+      uses: serverless/github-action@v4.0
       with:
         serverless-version: 2
         args: deploy
@@ -109,42 +99,17 @@ jobs:
 ### Change your working directory
 ```yaml
     - name: Deploy from a particular working directory
-      uses: serverless/github-action@v3.2
+      uses: serverless/github-action@v4.0
       with:
         working-directory: ./foo
         args: deploy
 ```
 
-## Usage with serverless plugins
-Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/28), thanks to @matthewpoer:
+## Use a previous version
+Change the action with `@{version}`, for example:
 ```yaml
-    - name: Install Plugin and Deploy
-      uses: serverless/github-action@v3.2
-      with:
-        args: -c "serverless plugin install --name <plugin-name> && serverless deploy"
-        entrypoint: /bin/sh
+uses: serverless/github-action@v3.2
 ```
-
-## Fix "This command can only be run in a Serverless service directory" error
-Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/53#issuecomment-1059839383), thanks to @nikhuber:
-```yaml
-    - name: Enter dir and deploy
-      uses: serverless/github-action@v3.2
-      with:
-        args: -c "cd ./<your-dir> && serverless deploy"
-        entrypoint: /bin/sh
-```
-
-
-## Use serverless v1 or v2
-Change the action with one of the following:
-```yaml
-uses: serverless/github-action@v1
-```
-```yaml
-uses: serverless/github-action@v2
-```
-
 
 ## License
 
