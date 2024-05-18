@@ -46,16 +46,67 @@ jobs:
         # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
-## Specify a particular version
+## Configuration
+
+| `with:` | Description | Required | Default |
+| --- | --- | --- | --- |
+| `args` | Arguments passed to `serverless` | `true` |
+| `aws-credentials` | Whether to use credentials stored in the local environment (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`) | `false` |  |
+| `entrypoint` | Serverless entrypoint. For example: `/bin/sh` | `false` | `/entrypoint.sh` |
+| `install-packages` | Comma-separated list of packages to install prior to running `serverless {args}` | `false` |  |
+| `serverless-version` | Version of the Serverless Framework to use | `false` | `latest` |
+| `working-directory` | Folder where your configuration is located | `false` | `.` |
+
+## Examples
+
+### Minimal example
 ```yaml
-    - name: Deploy with a particular version
+    - name: Deploy
       uses: serverless/github-action@v3.2
       with:
-        serverless-version: 3
         args: deploy
 ```
 
-## Change your working directory
+### Use local credentials
+```yaml
+    - name: Deploy with local credentials
+      uses: serverless/github-action@v3.2
+      with:
+        aws-credentials: true # or yes
+        args: deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+```
+
+### Use a different entrypoint
+```yaml
+    - name: Deploy with a different entrypoint
+      uses: serverless/github-action@v3.2
+      with:
+        entrypoint: /bin/sh
+        args: -c "serverless deploy"
+```
+
+### Install packages and deploy
+```yaml
+    - name: Install packages and deploy
+      uses: serverless/github-action@v3.2
+      with:
+        install-packages: serverless-offline,serverless-prune-plugin
+        args: deploy
+```
+
+### Use a particular Serverless Framework CLI version
+```yaml
+    - name: Deploy using a particular version of serverless
+      uses: serverless/github-action@v3.2
+      with:
+        serverless-version: 2
+        args: deploy
+```
+
+### Change your working directory
 ```yaml
     - name: Deploy from a particular working directory
       uses: serverless/github-action@v3.2

@@ -7,11 +7,15 @@ branding:
 inputs:
   args:
     description: 'Arguments passed to `serverless`'
+    required: true
+  aws-credentials:
+    description: 'Whether to use credentials stored in the local environment (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)'
     required: false
-    default: help
-  entrypoint:
-    description: 'Serverless entrypoint. For example: `/bin/sh`'
+    default: 'false'
+  install-packages:
+    description: 'Comma-separated list of packages to install prior to running `serverless {args}`'
     required: false
+    default: none
   serverless-version:
     description: 'Version of the Serverless Framework to use (default: latest)'
     required: false
@@ -26,8 +30,9 @@ runs:
   args:
     - ${{ inputs.working-directory }}
     - ${{ inputs.serverless-version }}
+    - ${{ inputs.install-packages }}
+    - ${{ inputs.aws-credentials }}
     - ${{ inputs.args }}
-  entrypoint: ${{ inputs.entrypoint }}
 
 outputs:
   version:
