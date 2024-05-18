@@ -29,10 +29,10 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.aws-credentials }}
     - ${{ inputs.working-directory }}
     - ${{ inputs.serverless-version }}
     - ${{ inputs.install-packages }}
-    - ${{ inputs.aws-credentials }}
     - ${{ inputs.args }}
 
 outputs:
