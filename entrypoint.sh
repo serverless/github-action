@@ -6,7 +6,7 @@ fi
 
 WITH_LOCAL_CREDENTIALS=""
 if [ "$1" = "true" ] || [ "$1" = "yes" ]; then
-    if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY"]; then
+    if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
         echo "You have aws-credentials set without AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY"
         exit 1
     fi
@@ -33,4 +33,5 @@ if [ "$4" != "none" ]; then
     fi
 fi
 
+echo serverless $5 $WITH_LOCAL_CREDENTIALS
 serverless $5 $WITH_LOCAL_CREDENTIALS
