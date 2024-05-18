@@ -1,10 +1,17 @@
-name: 'Serverless Github Action'
-description: 'Github Action for the Serverless Framework'
+name: 'Serverless GitHub Action'
+description: 'Wraps the Serverless Framework to enable common Serverless commands'
+author: 'Serverless, Inc. <hello@serverless.com> (https://serverless.com)'
+branding:
+  icon: 'zap'
+  color: 'red'
 inputs:
   args:
     description: 'Arguments passed to `serverless`'
     required: false
     default: help
+  entrypoint:
+    description: 'Serverless entrypoint. For example: `/bin/sh`'
+    required: false
   serverless-version:
     description: 'Version of the Serverless Framework to use (default: latest)'
     required: false
@@ -20,3 +27,10 @@ runs:
     - ${{ inputs.working-directory }}
     - ${{ inputs.serverless-version }}
     - ${{ inputs.args }}
+  entrypoint: ${{ inputs.entrypoint }}
+
+outputs:
+  version:
+    description: 'Serverless Framework version'
+  result:
+    description: 'Serverless Framework result'
