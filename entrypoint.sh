@@ -1,3 +1,4 @@
 #!/bin/sh -l
-npm i -g serverless@${1/v/}
-serverless $2
+cd $1
+npm i -g serverless@${2/v/}
+serverless $3

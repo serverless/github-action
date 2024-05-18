@@ -52,6 +52,16 @@ jobs:
       uses: serverless/github-action@v3.2
       with:
         serverless-version: 3
+        args: deploy
+```
+
+## Change your working directory
+```yaml
+    - name: Deploy from a particular working directory
+      uses: serverless/github-action@v3.2
+      with:
+        working-directory: ./foo
+        args: deploy
 ```
 
 ## Usage with serverless plugins
