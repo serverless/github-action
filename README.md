@@ -2,15 +2,9 @@
 
 This Action wraps the [Serverless Framework](https://serverless.com) to enable common Serverless commands.
 
-## This project is looking for maintainers!
-
-If you would like to be a maintainer of this project, please reach out to one of the active [Serverless organization](https://github.com/serverless) members to express your interest.
-
-Welcome, and thanks in advance for your help!
-
 ## Usage
 
-An example workflow to deploy a project with serverless v3:
+An example workflow to deploy a project with the Serverless Framework:
 
 
 ```yaml
@@ -61,7 +55,7 @@ jobs:
 ### Minimal example
 ```yaml
     - name: Deploy
-      uses: serverless/github-action@v4.0
+      uses: ryanlawson/serverless-github-action@v1.0
       with:
         args: deploy
 ```
@@ -69,7 +63,7 @@ jobs:
 ### Use local credentials
 ```yaml
     - name: Deploy with local credentials
-      uses: serverless/github-action@v4.0
+      uses: ryanlawson/serverless-github-action@v1.0
       with:
         aws-credentials: true # or yes
         args: deploy
@@ -81,7 +75,7 @@ jobs:
 ### Install packages and deploy
 ```yaml
     - name: Install packages and deploy
-      uses: serverless/github-action@v4.0
+      uses: ryanlawson/serverless-github-action@v1.0
       with:
         install-packages: serverless-offline serverless-prune-plugin
         args: deploy
@@ -90,7 +84,7 @@ jobs:
 ### Use a particular Serverless Framework CLI version
 ```yaml
     - name: Deploy using a particular version of serverless
-      uses: serverless/github-action@v4.0
+      uses: ryanlawson/serverless-github-action@v1.0
       with:
         serverless-version: 2
         args: deploy
@@ -99,16 +93,10 @@ jobs:
 ### Change your working directory
 ```yaml
     - name: Deploy from a particular working directory
-      uses: serverless/github-action@v4.0
+      uses: ryanlawson/serverless-github-action@v1.0
       with:
         working-directory: ./foo
         args: deploy
-```
-
-## Use a previous version
-Change the action with `@{version}`, for example:
-```yaml
-uses: serverless/github-action@v3.2
 ```
 
 ## License
