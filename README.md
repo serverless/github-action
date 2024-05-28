@@ -6,7 +6,6 @@ This Action wraps the [Serverless Framework](https://serverless.com) to enable c
 
 An example workflow to deploy a project with the Serverless Framework:
 
-
 ```yaml
 name: Deploy master branch
 
@@ -30,7 +29,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - name: serverless deploy
-      uses: serverless/github-action@v3.2
+      uses: ryanlawson/serverless-github-action@v1.0
       with:
         args: deploy
       env:
@@ -53,6 +52,7 @@ jobs:
 ## Examples
 
 ### Minimal example
+Basic deployment with no customization
 ```yaml
     - name: Deploy
       uses: ryanlawson/serverless-github-action@v1.0
@@ -61,6 +61,7 @@ jobs:
 ```
 
 ### Use local credentials
+Ensures `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` are present and uses them to authenticate
 ```yaml
     - name: Deploy with local credentials
       uses: ryanlawson/serverless-github-action@v1.0
@@ -73,6 +74,7 @@ jobs:
 ```
 
 ### Install packages and deploy
+Installs any additional packages (usually [Serverless plugins](https://www.serverless.com/plugins)) prior to deploying
 ```yaml
     - name: Install packages and deploy
       uses: ryanlawson/serverless-github-action@v1.0
@@ -82,6 +84,7 @@ jobs:
 ```
 
 ### Use a particular Serverless Framework CLI version
+Installs a specific version of the Serverless Framework
 ```yaml
     - name: Deploy using a particular version of serverless
       uses: ryanlawson/serverless-github-action@v1.0
@@ -91,6 +94,7 @@ jobs:
 ```
 
 ### Change your working directory
+Sets a specific working directory (usually the root of the repository) for your Serverless configuration
 ```yaml
     - name: Deploy from a particular working directory
       uses: ryanlawson/serverless-github-action@v1.0
