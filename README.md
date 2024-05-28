@@ -2,16 +2,9 @@
 
 This Action wraps the [Serverless Framework](https://serverless.com) to enable common Serverless commands.
 
-## This project is looking for maintainers!
-
-If you would like to be a maintainer of this project, please reach out to one of the active [Serverless organization](https://github.com/serverless) members to express your interest.
-
-Welcome, and thanks in advance for your help!
-
 ## Usage
 
-An example workflow to deploy a project with serverless v3:
-
+An example workflow to deploy a project with the Serverless Framework:
 
 ```yaml
 name: Deploy master branch
@@ -36,7 +29,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - name: serverless deploy
-      uses: serverless/github-action@v3.2
+      uses: ryanlawson/serverless-github-action@v1.0
       with:
         args: deploy
       env:
@@ -46,36 +39,69 @@ jobs:
         # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
-## Usage with serverless plugins
-Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/28), thanks to @matthewpoer:
+## Configuration
+
+| `with:` | Description | Required | Default |
+| --- | --- | --- | --- |
+| `args` | Arguments passed to `serverless` | `true` |
+| `aws-credentials` | Whether to use credentials stored in the local environment (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`) | `false` |  |
+| `install-packages` | Space-separated list of packages to install prior to running `serverless {args}` | `false` |  |
+| `serverless-version` | Version of the Serverless Framework to use | `false` | `latest` |
+| `working-directory` | Folder where your configuration is located | `false` | `.` |
+
+## Examples
+
+### Minimal example
+Basic deployment with no customization
 ```yaml
-    - name: Install Plugin and Deploy
-      uses: serverless/github-action@v3.2
+    - name: Deploy
+      uses: ryanlawson/serverless-github-action@v1.0
       with:
-        args: -c "serverless plugin install --name <plugin-name> && serverless deploy"
-        entrypoint: /bin/sh
+        args: deploy
 ```
 
-## Fix "This command can only be run in a Serverless service directory" error
-Change your action in this way, according to [this issue](https://github.com/serverless/github-action/issues/53#issuecomment-1059839383), thanks to @nikhuber:
+### Use local credentials
+Ensures `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` are present and uses them to authenticate
 ```yaml
-    - name: Enter dir and deploy
-      uses: serverless/github-action@v3.2
+    - name: Deploy with local credentials
+      uses: ryanlawson/serverless-github-action@v1.0
       with:
-        args: -c "cd ./<your-dir> && serverless deploy"
-        entrypoint: /bin/sh
+        aws-credentials: true # or yes
+        args: deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
-
-## Use serverless v1 or v2
-Change the action with one of the following:
+### Install packages and deploy
+Installs any additional packages (usually [Serverless plugins](https://www.serverless.com/plugins)) prior to deploying
 ```yaml
-uses: serverless/github-action@v1
-```
-```yaml
-uses: serverless/github-action@v2
+    - name: Install packages and deploy
+      uses: ryanlawson/serverless-github-action@v1.0
+      with:
+        install-packages: serverless-offline serverless-prune-plugin
+        args: deploy
 ```
 
+### Use a particular Serverless Framework CLI version
+Installs a specific version of the Serverless Framework
+```yaml
+    - name: Deploy using a particular version of serverless
+      uses: ryanlawson/serverless-github-action@v1.0
+      with:
+        serverless-version: 2
+        args: deploy
+```
+
+### Change your working directory
+Sets a specific working directory (usually the root of the repository) for your Serverless configuration
+```yaml
+    - name: Deploy from a particular working directory
+      uses: ryanlawson/serverless-github-action@v1.0
+      with:
+        working-directory: ./foo
+        args: deploy
+```
 
 ## License
 

@@ -4,21 +4,36 @@ author: 'Serverless, Inc. <hello@serverless.com> (https://serverless.com)'
 branding:
   icon: 'zap'
   color: 'red'
-
 inputs:
   args:
-    description: 'Serverless cli arguments'
+    description: 'Arguments passed to `serverless`'
     required: false
-  entrypoint:
-    description: 'Serverless entrypoint. For example: `/bin/sh`'
+    default: none
+  aws-credentials:
+    description: 'Whether to use credentials stored in the local environment (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)'
     required: false
-
+    default: 'false'
+  install-packages:
+    description: 'Space-separated list of packages to install prior to running `serverless {args}`'
+    required: false
+    default: none
+  serverless-version:
+    description: 'Version of the Serverless Framework to use (default: latest)'
+    required: false
+    default: latest
+  working-directory:
+    description: 'Folder where your configuration is located'
+    required: false
+    default: .
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.aws-credentials }}
+    - ${{ inputs.working-directory }}
+    - ${{ inputs.serverless-version }}
+    - ${{ inputs.install-packages }}
     - ${{ inputs.args }}
-  entrypoint: ${{ inputs.entrypoint }}
 
 outputs:
   version:
