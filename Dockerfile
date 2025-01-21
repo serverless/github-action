@@ -10,5 +10,8 @@ LABEL "com.github.actions.description"="Wraps the Serverless Framework to enable
 LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="red"
 
+# Install Docker from Docker Inc. repositories.
+RUN curl -sSL https://get.docker.com/ | sh
+
 RUN npm i -g serverless@4.x
 ENTRYPOINT ["serverless"]
