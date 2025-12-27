@@ -1,5 +1,7 @@
 # Github Action for Serverless
 
+# ⚠️ THIS REPOSITORY WILL BE INACCESSIBLE AFTER DECEMBER 31, 2026 ⚠️
+
 This Action wraps the [Serverless Framework](https://serverless.com) to enable common Serverless commands.
 
 ## Usage
